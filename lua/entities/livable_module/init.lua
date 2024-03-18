@@ -23,7 +23,7 @@ function ENT:Initialize()
 	else
         self.Inputs = { { Name = "On" }, { Name = "Radius" }, { Name = "Gravity" }, { Name = "Max O2 level" } }
     end
-	CAF.GetAddon("Resource Distribution").RegisterNonStorageDevice(self)
+	CAF.LibRD.RegisterNonStorageDevice(self)
 end
 
 function ENT:TurnOn()
@@ -101,12 +101,12 @@ function ENT:Repair()
 end
 
 function ENT:Destruct()
-    CAF.GetAddon("Spacebuild").RemoveEnvironment(self)
-    CAF.GetAddon("Life Support").LS_Destruct(self, true)
+    CAF.LibSB.RemoveEnvironment(self)
+    CAF.LibLS.LS_Destruct(self, true)
 end
 
 function ENT:OnRemove()
-    CAF.GetAddon("Spacebuild").RemoveEnvironment(self)
+    CAF.LibSB.RemoveEnvironment(self)
     self.BaseClass.OnRemove(self)
     self:StopSound("apc_engine_start")
 end
